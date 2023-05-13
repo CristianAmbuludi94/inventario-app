@@ -1,12 +1,13 @@
 import { useState } from 'react'
-//import reactLogo from './assets/react.svg'
-//import viteLogo from '/vite.svg'
-//import './App.css'
+import AppRouter from './routers/AppRouter';
 
 function App() {
   return (
-   <div>APP</div>
+ <AppRouter/>
   );
 }
 
 export default App
+
+// esta pagina es un filtro con la finalidad de no manchar de codigo extra al ejecutar el proyecto esta pagina l
+// lo importamos a amin para que se ejecute

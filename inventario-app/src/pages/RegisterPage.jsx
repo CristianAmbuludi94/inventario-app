@@ -1,42 +1,40 @@
 import React from "react"
 import { userForm } from "../hook/userForm"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import '/src/css/style.css';
 import "/src/css/bootstrap.min.css";
 
+export default function RegisterPage(){
+    const navigate=useNavigate();
 
-
-
-export const  LoginPage=()=>{
-   // este hooks es de reac router dom con elo lo utilizammos para naegar ala ruta dasboard dependiendo del login o reguistro
-   const navigate=useNavigate();
     //b utilizare el useform 
-   // al useform lo desestructurare y le pasare un diccionario que me interesen name, email, cintraseña
+
    const {name, email, password, onInputChange, onResetForm} = userForm({
     name:'',
     email:'',
     password:'',
-   }) 
-  
-// realizaremos el evento del sumit el cual sera el mismo en login y reguistro para el onsumit del forms
-const onLogin = e => {
-    e.preventDefault();
-    navigate('/dashboard', {
-        replace: true,
-        
-        state: {
-            
-            logged: true,
-            name,
-        },
+   });
+
+   const onRegister =(e)=>{
+    e.preventDefault()
+
+    navigate("/dashboard",{ // navegara a la ruta dashboard
+    replace: true,
+    state:{ // para poder otener el nombre y utilizarlo en el navbar , y con un atributo logged verifico si esta logeado
+        logged:true, // con esto puedo comprovar para las rutas privadas
+        name
+    },
     });
+
     onResetForm(); // me permite resetear el formulario de logion o reguistro
 };
 
-// creamos los formularios teniendo en cuenra el name el ide y el value que tienen que serlos mismos que declaramos al principio
-// id lo utilizo con un label ,
+// realizaremos el evento del sumit el cual sera el mismo en login y reguistro
+// con e tomaremos el evento 
+
+
     return(
-     
+
         <section class="form-02-main">
         <div class="container">
         <div class="col-md-12">
@@ -46,8 +44,8 @@ const onLogin = e => {
               <img src="src/css/images/user.png"/>
         </div>
         <div class="titulo"><h1 class="h1">THE-ONE-COMPUTER</h1></div>
-        <form onSubmit={onLogin}>
-            <h1>Iniciar Sesion</h1>
+        <form onSubmit={onRegister}>
+            <h1>REGISTRARSE</h1>
                 <div class="form-group">
                     <input 
                     type="text"
@@ -97,12 +95,12 @@ const onLogin = e => {
 
                 <div class="form-group">
               
-               <button className="_btn_04">Ingresar</button>
+               <button className="_btn_04">Registrarme</button>
               
-              <a href="#">Olvide la contraseña</a>
+              
             </div>
 
-            <div><p>O iniciar Seción con: </p></div>
+            <div><p>O Registrarse con: </p></div>
             <div class="form-group pt-0">
             <div class="_social_04">
                 <ol>
@@ -122,7 +120,5 @@ const onLogin = e => {
         </div>
         </div>
         </section>
-     
     )
 }
-export default LoginPage;
